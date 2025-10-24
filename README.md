@@ -65,6 +65,7 @@ python -m venv .venv
 .venv\Scripts\activate
 ### macOS / Linux
 source .venv/bin/activate
+---
 
 
 ### Install Dependencies
@@ -72,11 +73,15 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
+---
+
 ### Requirements.txt
 
 ultralytics>=8.2.0
 opencv-python>=4.8.0
 numpy>=1.24.0
+
+---
 
 ### 7) Run the Project
 
