@@ -34,7 +34,7 @@ Here’s a short **demo video** showing the Footfall Counter in action
   </video>
 </p>
 
-👉 [Click here to watch the demo video](https://github.com/anandu91/footfall-counter-yolov8/blob/main/assets/demo.mp4)
+👉 [Click here to watch the demo video](https://youtu.be/M4N1nLtjUxA)
 
 ---
 
