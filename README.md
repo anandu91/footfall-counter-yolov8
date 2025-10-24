@@ -5,13 +5,15 @@ Detect, track, and **count people** as they **cross a virtual line (ROI)** using
 ---
 
 ## 1) Brief Description of the Approach
-- **Detection:** Ultralytics **YOLOv8** runs on each frame (restricted to **COCO class 0: person**).
-- **Tracking:** **ByteTrack** (via `ultralytics.YOLO.track`) keeps **stable track IDs** across frames.
-- **ROI Line:** A virtual line **A→B** is specified in **normalized coordinates** (`--line x1 y1 x2 y2`).
-- **Robustness:** Inner/outer **hysteresis bands**, **minimum travel**, **EMA centroid smoothing**, and **per-ID cooldown** prevent jitter and double-counts.
-- **Output:** Live HUD (Entry/Exit), bbox + ID overlays, line/bands visualization, and a saved processed video.
+- **Detection:** Ultralytics **YOLOv8** runs on each frame (restricted to **COCO class 0: person**).  
+- **Tracking:** **ByteTrack** (via `ultralytics.YOLO.track`) maintains **stable track IDs** across frames.  
+- **ROI Line:** A virtual line **A→B** is defined with **normalized coordinates** (`--line x1 y1 x2 y2`).  
+- **Robustness:** Inner/outer **hysteresis bands**, **minimum travel**, **EMA centroid smoothing**, and **per-ID cooldown** prevent jitter and double-counts.  
+- **Output:** Real-time display of bounding boxes, ROI line, and live counters (Entry, Exit, Total inside), along with a **processed video output**.
 
-**Screenshots**
+---
+
+## 2) Screenshots
 
 <p align="center">
   <img src="assets/screenshots/frame_001.png" width="48%" alt="Footfall counter – sample frame 1">
@@ -20,26 +22,43 @@ Detect, track, and **count people** as they **cross a virtual line (ROI)** using
 
 ---
 
-## 2) Video Source Used (link or description)
+## 3) Output Demo
+
+Here’s a short **demo video** showing the Footfall Counter in action  
+(detecting, tracking, and counting people crossing the ROI line).
+
+<p align="center">
+  <video width="640" controls>
+    <source src="assets/demo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</p>
+
+👉 [Click here to watch the demo video](https://github.com/anandu91/footfall-counter-yolov8/blob/main/assets/demo.mp4)
+
+---
+
+## 4) Video Source Used
 - **Primary dataset:** **Oxford Town Centre** (fixed street CCTV; research-use).  
-  Kaggle mirror: https://www.kaggle.com/datasets/almightyj/oxford-town-centre/data
-- **This repo’s input file:** `assets/Video_Input.mp4`  
-  *(You may replace this with any public people video or your own recording.)*
+  Kaggle mirror: [https://www.kaggle.com/datasets/almightyj/oxford-town-centre/data](https://www.kaggle.com/datasets/almightyj/oxford-town-centre/data)  
+- **Repo input file:** `assets/Video_Input.mp4`  
+  *(You can replace it with any public crowd video or your own recording.)*
 
 ---
 
-## 3) Explanation of the Counting Logic (ROI Line Crossing)
-1. Compute each tracked person’s **centroid** every frame.
-2. For line **A→B**, compute the centroid’s **signed distance** to the line (which side it lies on).
-3. A **non-zero sign flip** that happens **outside the inner band** counts as **one crossing**.
-4. Project motion **along the line’s normal** to classify **Entry vs Exit** according to `--direction` (`lr`, `rl`, `tb`, `bt`).
-5. Apply **minimum travel** and a **per-ID cooldown** so a single person isn’t counted multiple times while lingering near the boundary.
+## 5) Counting Logic (ROI Line Crossing)
+
+1. For each tracked person, compute their **centroid** in every frame.  
+2. Calculate the **signed distance** of the centroid from the ROI line.  
+3. A **sign change** outside the inner band indicates a **crossing event**.  
+4. Direction (`lr`, `rl`, `tb`, `bt`) determines **Entry** or **Exit** classification.  
+5. Apply a **minimum travel threshold** and **cooldown per ID** to prevent duplicate counts.  
 
 ---
 
-## 4) Dependencies & Setup Instructions
+## 6) Dependencies & Setup Instructions
 
-### Environment
+### Environment Setup
 ```bash
 python -m venv .venv
 # Windows
@@ -47,15 +66,19 @@ python -m venv .venv
 # macOS / Linux
 source .venv/bin/activate
 
+
+Install Dependencies
+```bash
 pip install --upgrade pip
 pip install -r requirements.txt
 
 requirements.txt
-
 ```bash
 ultralytics>=8.2.0
 opencv-python>=4.8.0
 numpy>=1.24.0
+
+7) Run the Project
 
 ```bash
 python footfall_counter.py \
@@ -66,4 +89,3 @@ python footfall_counter.py \
   --margin 0.03 --inner 0.015 --mintravel 12 --cooldown 25 \
   --save assets/example_output.mp4 --show
 
-Output: The processed video is saved to assets/example_output.mp4 (with IDs, ROI line, and live Entry/Exit counters), and final totals are also printed in the console.
