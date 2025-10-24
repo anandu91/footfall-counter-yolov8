@@ -63,8 +63,10 @@ Here’s a short **demo video** showing the Footfall Counter in action
 python -m venv .venv
 ### Windows
 .venv\Scripts\activate
+
 ### macOS / Linux
 source .venv/bin/activate
+
 ---
 
 
