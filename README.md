@@ -88,4 +88,3 @@ python footfall_counter.py \
   --direction lr \
   --margin 0.03 --inner 0.015 --mintravel 12 --cooldown 25 \
   --save assets/example_output.mp4 --show
-
