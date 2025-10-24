@@ -59,7 +59,7 @@ Here’s a short **demo video** showing the Footfall Counter in action
 ## 6) Dependencies & Setup Instructions
 
 ### Environment Setup
-```bash
+
 python -m venv .venv
 # Windows
 .venv\Scripts\activate
@@ -68,19 +68,19 @@ source .venv/bin/activate
 
 
 Install Dependencies
-```bash
+
 pip install --upgrade pip
 pip install -r requirements.txt
 
 requirements.txt
-```bash
+
 ultralytics>=8.2.0
 opencv-python>=4.8.0
 numpy>=1.24.0
 
 7) Run the Project
 
-```bash
+
 python footfall_counter.py \
   --source assets/Video_Input.mp4 \
   --count_mode line \
