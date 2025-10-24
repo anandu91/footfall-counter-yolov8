@@ -40,7 +40,7 @@ Here’s a short **demo video** showing the Footfall Counter in action
 
 ## 4) Video Source Used
 - **Primary dataset:** **Oxford Town Centre** (fixed street CCTV; research-use).  
-  Kaggle mirror: [https://www.kaggle.com/datasets/almightyj/oxford-town-centre/data](https://www.kaggle.com/datasets/almightyj/oxford-town-centre/data)  
+  Kaggle mirror: [https://www.kaggle.com/datasets/almightyj/oxford-town-centre/data?select=TownCentreXVID.mp4](https://www.kaggle.com/datasets/almightyj/oxford-town-centre/data?select=TownCentreXVID.mp4)
 - **Repo input file:** `assets/Video_Input.mp4`  
   *(You can replace it with any public crowd video or your own recording.)*
 
