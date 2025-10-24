@@ -1,0 +1,3 @@
+# Optional ByteTrack config.
+# Leaving this file is optional; Ultralytics provides a default 'bytetrack.yaml' internally.
+# You can tweak thresholds here if needed. Otherwise, the script will still run fine.
